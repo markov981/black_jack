@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html>
+
+<head>
+	<title>Black[]Jack</title>
+</head>
+
+
+
+<body>
+ 
+ <h4>Play #  .    Cards left in the deck:  </h4>
+
+ 
+ 
+  <p></p>
+  <p></p>
+  
+  <label for="player_info">Player:</label>
+  <input id="player_info"  type="text" name="player_header"  value="{{points_p}}" required disabled>
+ 
+  <label for="dealer_info">Dealer:</label> 
+  <input id="dealer_info"  type="text" name="dealer_header"  value="{{points_d}}" required disabled>
+  
+  <p></p>
+
+
+  
+   {{#isGameStart}}
+		 <form method="post" action="/blackjack/gamestart">
+		  	   <button  class="play"     name="blackjack"  value="gamestart"    
+		  	   title="Start the game">START GAME</button>
+		 </form> 
+   {{/isGameStart}}
+    
+    
+    
+   {{#isPlayStart}}
+		 <form method="post" action="/blackjack/hit">
+		  	   <button  class="play"     name="blackjack"  value="hit"    
+		  	   title="One more card"> HIT </button>
+		 </form>
+		  
+		 <form method="post" action="/blackjack/stand">
+		       <button  class="play"  name="blackjack"      value="stand"   
+		       title="No more cards">STAND</button>
+		 </form>  
+   {{/isPlayStart}}
+  
+</body>  
+</html> 

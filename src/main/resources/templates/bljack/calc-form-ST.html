@@ -1,0 +1,86 @@
+<!doctype html>
+
+<html> 
+<head>
+	<title>Calculate</title>
+	<style>
+	
+		button
+		{
+			display: inline-block;
+			border-radius: 24px;
+			box-shadow: 0 2px 2px rgba(0,0,0, .4);
+			background-color: #3c7bf9;
+			border: 0;
+			color: white;
+			
+			transition:box-shadow .5s;
+			margin-bottom: 6px;
+			width: 48px;
+			height: 48px;
+			font-size: 16px;
+		}
+		
+		button:hover
+		{
+			box-shadow: 0 6px 6px rgba(0,0,0, .2);
+			color: #3c7bf9;
+			background-color: white;			
+		}
+		
+	</style>
+</head>
+
+
+<body> 
+
+	{{#stack}}
+
+		<div>{{ . }}</div>
+	
+	{{/stack}}
+	
+	
+	
+
+  <form method="post" action="/calculator/values">
+          <input type="number" step="any" name="numb" required> 
+          <button>P</button>  
+  </form>  
+  
+  
+  <form method="post"  action="/calculator/operation/undo">  
+  		<button>U</button>    
+  		{{ undoSize }}
+  </form>
+  
+  
+  
+  {{#showBinaryOperator}}
+	  <form method="post" action="/calculator/operation/add">
+	  		<button    autofocus  name="operation" value="add" title="Addition"       style="height:40px; width:40px"> + </button>
+	  </form>
+	  
+	  <form method="post" action="/calculator/operation/subtract">
+	         <button name="operation" value="sub" title="Subtraction"   style="height:40px; width:40px"> - </button>
+	  </form>  
+	  
+	  <form method="post" action="/calculator/operation/multiply">
+	      <button name="operation" value="mlt" title="Multiplication" 	style="height:40px; width:40px"> * </button>
+	  </form> 
+  {{/showBinaryOperator}}
+  
+  
+  {{#showUnaryOperator}}
+	  <form method="post" action="/calculator/operation/negate"> 
+	          <button name="operation" value="swp" title="Swap Signs"     style="height:40px; width:40px"> +/- </button>
+	  </form> 
+	            
+	  <form method="post" action="/calculator/operation/clear">
+	        <button name="operation" value="clr" title="Clear" 		      style="height:40px; width:40px">AC</button>
+	  </form> 
+  {{/showUnaryOperator}}
+ 
+ 
+ </body>
+</html>

@@ -1,0 +1,46 @@
+<doctype! html>
+    <html>
+
+    <head>
+        <title>Thi is BOX model</title>
+
+        <style>
+            * {
+                box-sizing: border-box;
+                border: 1em dotted;
+                
+            }
+
+
+            .padded {
+                width: 200px;
+                background-color: orange;
+                border: 1px solid #333;
+                padding: 1em;
+            }
+
+            .boxed {
+                box-sizing: border-box;
+                margin-top: 2em;
+            }
+
+            .normal {
+                box-sizing: content-box;
+            }
+        </style>
+
+
+    </head>
+
+
+    <body>
+
+        <div class="normal padded">Kilroy was here</div>
+        <div class="boxed padded">Kilroy was here</div>
+        <div class="padded">Kilroy was here</div>
+
+
+
+    </body>
+
+    </html>
