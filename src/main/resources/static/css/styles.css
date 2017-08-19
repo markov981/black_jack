@@ -1,11 +1,20 @@
+
+
 html, body{
 		margin: 10;
 		padding: 10;
+        font-family: Tahoma, Verdana, Segoe, sans-serif;
+	    font-style: normal;
+	    color: #000080;
 }
 
 body{
 		font-size: 16px;
 	}
+
+	
+form{display: inline;}	
+	
 	
 button {
   border-radius: 0;
@@ -29,30 +38,57 @@ button:active {
   color: black;
 }
 	
-.player_info{
-		height:				30px; 
-		width:				180px;
-		background-color: 	#c6ffc6;
-		font-size: 			24px;
+label{
+	fontcolor: #00008e;
+}
+
+#cards_left{
+		height:				16px; 
+		width:				20px;
+		background-color: 	#c0c0c0;
+		font-size: 			12px;
+		color:              white;
+		box-shadow: none;
+        border: 0px solid;	}
+        
+#cards_left:focus {outline:none;}
+
+	}
+	
+#hand_p{
+		height:				16px; 
+		width:				280px;
+		background-color: 	#dfd9ff;
+		font-size: 			12px;
+		box-shadow: none;
+        border: 0px solid;
 	}
 
-.dealer_info{
-		height:				30px; 
-		width:				180px;
-		background-color: 	#ffd5d5;
-		font-size: 			24px;
+#hand_d{
+		height:				16px; 
+		width:				280px;
+		background-color: 	#ebeae9;
+		font-size: 			12px;
+		box-shadow: none;
+        border: 0px solid;
 	}
 
-	
-	
-	
-		
-.header_P{
-		height:				20px; 
-		width:				150px;
-		background-color: 	blue;
-		font-size: 			14px;
-		text-align:         center;
-		color:			    white;
-	}
+
+.player_info {
+    box-shadow: none;
+    border: 0px solid;
+}	
+
+.player_info:focus {
+    outline:none;
+}	
+
+hr
+{   
+    background-color: #000080;
+    border: 0 none;
+    color: #000080;
+    height: 1px;
+    width:  1000px;
+}
 	

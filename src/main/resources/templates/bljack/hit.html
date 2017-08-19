@@ -3,7 +3,7 @@
 <html>
 
 <head>
-	<title>Black (~_~) Jack</title>
+	<title>Black (*_*) Jack</title>
 	<link rel="stylesheet" href="http://localhost:8080/css/styles.css">
 </head>
 
@@ -35,30 +35,18 @@
   <br>
   <br>
 
-   <!-- Game has NOT Started - NEW GAME & BET buttons are available -->
-   {{#isGameStart}}
-   		 <form method="post" action="/gamestart">
-   		       <label for="bet">Enter your BET (a value from 1 to {{max_value}}):</label> 
-		  	   <input autofocus  
-		  	          name="bet" type="number"  
-		  	          value="1"  step="1"  min="1" max="{{max_value}}"  
-		  	          placeholder="bet"  required> 
 
-		  	   <button  class="play"   name="blackjack_SG"  value="gamestart"   
-		  	   title="Start the game">START GAME</button>		  	   
-		 </form>	
-   {{/isGameStart}}
 
     
     <!-- Game has started & Player does not have BlackJack - HIT & STAND buttons are both available -->  
    {{#isPlayStart}}
    <form>
-		 <form method="post" action="blackjack/hit">
-		  	   <button  class="play2"     name="hitt"  value="hit"    
+		 <form method="post" action="gamestart/hit">
+		  	   <button  class="play2"     name="hit"  value="hit"    
 		  	   title="One more card"> HIT </button>
 		 </form>
 		  
-		 <form method="post" action="blackjack/stand">
+		 <form method="post" action="/blackjack/stand">
 		       <button  class="play2"  name="blackjack_S"      value="stand"   
 		       title="No more cards">STAND</button>
 		 </form>  
@@ -66,15 +54,7 @@
    {{/isPlayStart}}
 
    
-   <!-- Player gets BlackJack - the HIT button hides & a dumb message appears -->
-   {{#isBlackJack}}		  
-		 <form method="post" action="/blackjack/stand">
-		       <button  class="play"  name="blackjack_SS"      value="stand"   
-		       title="No more cards">STAND</button>
-		 </form>  
-		 
-		 <h5>{{msg}}</h5>
-   {{/isBlackJack}}
+
    
    
 
