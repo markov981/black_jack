@@ -9,19 +9,20 @@ import java.util.ArrayList;
  *  - Fixes the '10' vs face cards problem (if deck[i] == 99 --> count card as '10' - all '10's are entered as '99's)
  *  - Checks if your Hand = BUST or BLACKJACK
  */
-public class Hand{
-	
 
-	
-		
+public class Hand{
+			
 	// Load cards dealt to Player/Dealer into list(s) to be processed later
 	public ArrayList<String> loadTwoCards(int card1, int card2, ArrayList<String> hand){
 		hand.add("card1");
 		hand.add("card2");
+		
 		return hand;}
+	
 	
 	public ArrayList<String> loadOneCard(String card1, ArrayList<String> hand){
 		hand.add(String.valueOf(card1));
+		
 		return hand;}
 	
 	
@@ -37,6 +38,15 @@ public class Hand{
 			points += checkPointsOneCard(Integer.parseInt(card));
 			
 		return points; }
+
+	
+	// Process Player/Dealer-level List for total points - minus points from a specified element (to hide points from the Hole)
+	public int getTotalPointsNoHole(ArrayList<String> hand, int i) { 
+		int points = 0;
+		for(String card : hand)
+			points += checkPointsOneCard(Integer.parseInt(card));
+			
+		return points - Integer.valueOf(hand.get(i)); }
 	
 	
 	// What is your hand: describe your cards

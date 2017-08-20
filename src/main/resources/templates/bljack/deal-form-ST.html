@@ -9,23 +9,30 @@
 
 
 <body>
+
   <br>
-  <label for="player_info">Cards Left:</label>
+  <label class="ref_info" for="player_info1">Cards Left:</label>
   <input id="cards_left"    type="text"  name="player_header_1"  value=" {{cards_left}}"        
-  		 placeholder="player_info" required disabled>
+  		 placeholder="player_info1" required disabled>
   <br>
-  <label for="player_info">  Your Account (initial/current):</label>
+  <label class="ref_info" for="player_info2">  Your Account Bal (initial/current):</label>
   <input class="player_info"   type="text" name="player_header_2"  
          value=" ${{start_with_amount}}  /  ${{current_amount}}" 
-  		 required disabled> 
+  		 placeholder="player_info2" required disabled> 
   <br> 
-  <label for="player_info">  You won / lost:</label>
-  <input class="player_info"   type="text" name="player_header_3"  value="{{win}}"
-  		 required disabled> 		 
+  <label class="ref_info" for="player_info3">  You Won / Lost (this PLAY):</label>
+  <input class="player_info"   type="text" name="player_header_3"  value=" ${{win}}"
+  		 placeholder="player_info3" required disabled> 		 
   <br>
-  <hr> 
+  <label class="ref_info" for="player_info4">  Your Bet :</label>
+  <input class="player_info"   type="text" name="player_header_4"  value=" ${{betA}}"
+  		 placeholder="player_info4" required disabled> 		 
+  <br>  
+  <br> 
+  <input id="div1">
   <br>
-  <label for="hand_p" style="fontcolor:blue">Player:</label>
+  <br>
+  <label for="hand_p">Player:</label>
   <input id="hand_p"  type="text" name="player_header"  value="{{points_p}}" required disabled>
   <br>
   <br>
@@ -45,39 +52,43 @@
 		  	          placeholder="bet"  required> 
 
 		  	   <button  class="play"   name="blackjack_SG"  value="gamestart"   
-		  	   title="Start the game">START GAME</button>		  	   
+		  	   title="Start the game">START PLAY</button>		  	   
 		 </form>	
    {{/isGameStart}}
 
     
     <!-- Game has started & Player does not have BlackJack - HIT & STAND buttons are both available -->  
    {{#isPlayStart}}
-   <form>
 		 <form method="post" action="blackjack/hit">
-		  	   <button  class="play2"     name="hitt"  value="hit"    
-		  	   title="One more card"> HIT </button>
-		 </form>
+		       <button  class="play2"      name="blackjack_H"  value="hit"   
+		       title="One more card">HIT</button>
+		 </form> 
 		  
 		 <form method="post" action="blackjack/stand">
-		       <button  class="play2"  name="blackjack_S"      value="stand"   
+		       <button  class="play2"      name="blackjack_S"  value="stand"   
 		       title="No more cards">STAND</button>
 		 </form>  
-	</form>
    {{/isPlayStart}}
 
-   
-   <!-- Player gets BlackJack - the HIT button hides & a dumb message appears -->
-   {{#isBlackJack}}		  
+
+   <!-- Player gets BlackJack - the HIT button hides & message appears -->
+   {{#isStand}}		  
 		 <form method="post" action="/blackjack/stand">
 		       <button  class="play"  name="blackjack_SS"      value="stand"   
 		       title="No more cards">STAND</button>
 		 </form>  
-		 
-		 <h5>{{msg}}</h5>
-   {{/isBlackJack}}
+   {{/isStand}}
    
+     
+   <!-- Player gets BlackJack - the HIT button hides & message appears -->
+   {{#isNewPlay}}		  
+		 <form method="post" action="/blackjack/new_game">
+		       <button  class="play"  name="blackjack_NG"      value="new_game"   
+		       title="Start a new play">NEW PLAY</button>
+		 </form>  
+   {{/isNewPlay}}
    
-
-  
+   <p style=" color:blue; font-family:Tahoma; font-size:100%; text-align:center; ">{{msg}}</p> 
+   <p style=" color:black; font-family:Tahoma; font-size:90%; text-align:center; ">{{msg1}}</p>   
 </body>  
 </html> 
