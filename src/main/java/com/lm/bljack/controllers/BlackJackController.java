@@ -28,16 +28,16 @@ public class BlackJackController
 	public ArrayList<String> playerHandArr = new ArrayList<String>();
 	public ArrayList<String> dealerHandArr = new ArrayList<String>();
 	
-	// Initial $ amount in your account is determined randomly in order not to hard-code it: [100; 1,000] 
+	// Initial $ amount in your account is set randomly in order not to hard-code it: [100; 1,000] 
 	Random rnd = new Random();
 	private int startWithAmount = 100 + rnd.nextInt(901);
 	
 	// Returned from the Player
 	private int bet;
 	
-	// i counts cards dealt in a play
+	// i counts cards dealt in the current play
 	private int i = 0; 
-	// Number of cards dealt in a game, excluding the current game 
+	// Number of cards that have dealt in a game, excluding the current game 
 	private int cards_dealt = 0;
 	
 	// Empty Player/Dealer Hands
@@ -69,9 +69,10 @@ public class BlackJackController
     
     
     
-	/* 0. Make visible a single button: "START PLAY"
-	 * ---------------------------------------------
-	    --> Make visible START GAME button
+    
+	/* 0. "START PLAY" button
+	 * ----------------------
+	    --> Make visible START PLAY button
 	    --> Make visible BET        button
 	 */
 	@GetMapping("")    
@@ -101,7 +102,7 @@ public class BlackJackController
 	
 	
 					
-	/*  'START PLAY' button
+	/*  1. 'START PLAY' button
 	 *  -------------------
         --> 'START GAME' button hides (turns into 'EXIT GAME') ??
         -->  BET <input> hides
@@ -169,7 +170,7 @@ public class BlackJackController
 	
 	
   
-	/*  'HIT' button. Press until Player
+	/*  2. 'HIT' button. Press until Player
 	 *  --------------------------------
         -->  Will press 'STAND'
         -->  Goes Bust

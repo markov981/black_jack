@@ -3,11 +3,10 @@ package com.lm.bljack.models;
 import java.util.ArrayList;
    
 
-/*  This could be Player or Dealer hand
- *  -----------------------------------
- *  - Keeps track of the points (START + CARDS DEALT + ACE value resolution)
- *  - Fixes the '10' vs face cards problem (if deck[i] == 99 --> count card as '10' - all '10's are entered as '99's)
- *  - Checks if your Hand = BUST or BLACKJACK
+/*  Player or Dealer hand
+ *  ---------------------
+ *  - Keeps track of cards points (including ACE value resolution)
+ *  - Fixes the '10' vs face card issue (if deck[i] == 99 --> count card as '10' - all '10's are entered as '99's)
  */
 
 public class Hand{

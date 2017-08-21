@@ -2,7 +2,7 @@ package com.lm.bljack.models;
 
 import java.util.ArrayList;
 
-import org.springframework.ui.Model;
+
 
 public class GameStatus {
 
@@ -28,7 +28,7 @@ public class GameStatus {
     }
     
     
-	// Is BlackJack
+	// Is BlackJack" F && A
     public boolean isBlackJack(ArrayList<String> hand) {
     	int checkA = 0; int checkF = 0; int total = 0;
     	
@@ -49,7 +49,8 @@ public class GameStatus {
         
     	for(String itrt : hand) 
     		total += Integer.valueOf(itrt);
-    	   		   
+    	
+    	// F && A && no other cards in the hand   or use hand.size() < 3
     	if ((checkA + checkF) == 2 && total == 21) return true; 
     	
     	return false;}

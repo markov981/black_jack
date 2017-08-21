@@ -7,7 +7,7 @@ import java.util.Random;
  * -----------------------------------------------------
      * STEP 1. 
      *   i = 51 (we start with the last card) 
-     *   Generate a 'random number' = an integer between 0 and 52 (not inclusive of 52, so we are OK)
+     *   Generate a 'random number' to be used as an index = an integer between 0 and 52 (not inclusive of 52, so we are OK)
      *   Meaning, that at this step card[51] could be swapped with any other card (itself including)   
      *   Swap happens, move on to the next card --> to the one before the 1st, i.e. card[1] 
      *   
@@ -25,10 +25,7 @@ public class Shuffle{
 	            
 	            int a = deckCards[index];
 	            deckCards[index] = deckCards[i];
-	            deckCards[i]     = a;
-	            
-	            // TBD
-	            // System.out.println(" index: " + i + " value: " + deckCards[i]);	            
+	            deckCards[i]     = a;            
 	        }	
 	    }
 }

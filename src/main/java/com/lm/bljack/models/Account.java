@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Account {
 	
 	private int account;
-	public Account(int initialAmount)       {account = initialAmount;}
+	public Account(int initialAmount)        {account = initialAmount;}
 			
 	public int  getAccountAmount()           { return account;}	
 	public void setAccount(int account)      {this.account = account;}
@@ -17,7 +17,7 @@ public class Account {
 	public int  getWinLoss(int startAmount)  { return account - startAmount; }	
 	
 
-	// Define the play outcome 
+	// Define play outcome 
 	public String setPlayOutcome(int pointsPlayer, int pointsDealer, GameStatus statusP, GameStatus statusD,
 			ArrayList<String> handArr, ArrayList<String> dealArr) {
 		
@@ -32,7 +32,7 @@ public class Account {
 			return "bust";}
 
 		
-	/* Calculate payoffs given bet amount & play outcome 
+	/* Calculate payoffs given bet amount & play outcome & EvenMoney offer
 	     ?? The casting (double to int) robs Player of any cents he might get ?? 	   
 	   Even Money payoff: 
 	   	- if PL = BJ && DL =  BJ --> 0 on the original bet   &&  2 * half of the original bet

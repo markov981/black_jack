@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import org.springframework.ui.Model;
 
 
-
+// makes Controller code less verbose
 public class View {
 	
-	// Chooses html elements to view
+
 	public void renderToView(Model model, Object obj1, Object obj2,
 			                       boolean isGameStart, boolean isPlayStart, boolean isStand, 
 			                       boolean isNewPlay,   boolean isGameOver
@@ -28,6 +28,7 @@ public class View {
 		int temp = 52;
 		temp = num - handPl.size() - handDl.size() - accmCards;
 		model.addAttribute("cards_left", temp);}
+	
 	
 	// this is a mess...
 	public int getCardNumb(final int num, Model model, ArrayList<String> handPl, ArrayList<String> handDl, int accmCards) {
