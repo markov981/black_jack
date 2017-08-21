@@ -33,8 +33,7 @@ public class Account {
 
 		
 	/* Calculate payoffs given bet amount & play outcome 
-	     ?? The casting (double to int) robs Player of any cents he might get ?? 
-	   
+	     ?? The casting (double to int) robs Player of any cents he might get ?? 	   
 	   Even Money payoff: 
 	   	- if PL = BJ && DL =  BJ --> 0 on the original bet   &&  2 * half of the original bet
 	   	- if PL = BJ && DL = !BJ --> 1.5 on the original bet &&  0 * half of the original bet	   
