@@ -12,14 +12,14 @@ public class Dealer {
 		
 	
 	// Deal to Dealer until his hand > 17
+	// ACE ('11') is reduced to '1' as necessary within getDealerPoints() method
 	public int getDealerPoints(ArrayList<String> handArr, int[] deck, int i) {
 		
 		Hand dlrHand = new Hand();
 		while (dlrHand.getTotalPoints(handArr) < 17) {
-				dlrHand.loadOneCard(String.valueOf(deck[i]), handArr);} 
+				dlrHand.loadOneCard(String.valueOf(deck[i]), handArr); } 
 		
 		pointsDealer = dlrHand.getTotalPoints(handArr);
 		
 		return pointsDealer;}
-
-	}
+}

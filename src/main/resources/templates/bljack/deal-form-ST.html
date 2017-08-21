@@ -9,7 +9,6 @@
 
 
 <body>
-
   <br>
   <label class="ref_info" for="player_info1">Cards Left:</label>
   <input id="cards_left"    type="text"  name="player_header_1"  value=" {{cards_left}}"        
@@ -24,7 +23,7 @@
   <input class="player_info"   type="text" name="player_header_3"  value=" ${{win}}"
   		 placeholder="player_info3" required disabled> 		 
   <br>
-  <label class="ref_info" for="player_info4">  Your Bet :</label>
+  <label class="ref_info" for="player_info4">  Your Bet:</label>
   <input class="player_info"   type="text" name="player_header_4"  value=" ${{betA}}"
   		 placeholder="player_info4" required disabled> 		 
   <br>  
@@ -71,10 +70,17 @@
    {{/isPlayStart}}
 
 
-   <!-- Player gets BlackJack - the HIT button hides & message appears -->
+   {{#isEvenMoney}}		  
+		 <form method="post" action="/blackjack/hit">
+		       <button  class="play"  name="blackjack_S"      value={{accept_em_offer}}"   
+		       title="Will you accept even moeny offer?">EVEN MONEY?</button>
+		 </form>  
+   {{/isEvenMoney}}
+   
+   
    {{#isStand}}		  
 		 <form method="post" action="/blackjack/stand">
-		       <button  class="play"  name="blackjack_SS"      value="stand"   
+		       <button  class="play"  name="blackjack_S"      value="stand"   
 		       title="No more cards">STAND</button>
 		 </form>  
    {{/isStand}}
@@ -87,8 +93,18 @@
 		       title="Start a new play">NEW PLAY</button>
 		 </form>  
    {{/isNewPlay}}
+
+
+   <!-- No buttons or any info -->
+   {{#isGameOver}}		  
+		 <form method="post" action="/blackjack/end_game">
+		       <button  class="play"  name="blackjack_EG"      value="end_game"  style="float: center;" 
+		       title="Start a new play">END GAME</button>
+		 </form>    
+   {{/isGameOver}}  
    
    <p style=" color:blue; font-family:Tahoma; font-size:100%; text-align:center; ">{{msg}}</p> 
-   <p style=" color:black; font-family:Tahoma; font-size:90%; text-align:center; ">{{msg1}}</p>   
+   <p style=" color:black; font-family:Tahoma; font-size:90%; text-align:center; ">{{msg1}}</p>  
+    
 </body>  
 </html> 
