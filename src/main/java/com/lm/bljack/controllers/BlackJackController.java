@@ -184,7 +184,7 @@ public class BlackJackController
 		String temp="";
 		boolean EvenMoneySuffFunds = true;
 		/* If Player accepts the Even Money offer: 
-		     - His bet value is increased 50% (though with bet being an int this does not work too well)  
+		     - His bet value is increased 50% (though with bet being an int this does not work too well)  - ??????? is that right ??????
 		     - Also check for funds availability (same as above)
 		     - If the Player does not have funds to increase the bet by 50%, he gets a message: status.isEvenMoneyMsg(EvenMoney)
 		 */
@@ -218,13 +218,7 @@ public class BlackJackController
 		model.addAttribute("current_amount", act.getAccountAmount());
 		model.addAttribute("win", "");
 		model.addAttribute("betA", bet);
-
-		
-//		System.out.println("Player points: " + handPlayer.getTotalPoints(playerHandArr));
-//		System.out.println("bet: " + bet);
-//		System.out.println("Account bal: " + act.getAccountAmount());
-		
-		
+	
 		
         // Branching.....
         if (handPlayer.getTotalPoints(playerHandArr) == 21) 
@@ -238,8 +232,7 @@ public class BlackJackController
         // Out of money?
         if(act.getAccountAmount() == 0)
     	    {vw.renderToView(model, status.isOutOfMoneyMsg1(), status.isOutOfMoneyMsg2(), false, false, false, false, true);}
-      
-        System.out.println("The end of HIT -------->"); 
+        
         
 		return "bljack/deal-form-ST";
 		// return "redirect:/blackjack     return "bljack/hit";
@@ -251,8 +244,8 @@ public class BlackJackController
 	/*  3. 'STAND' button
 	 *  -----------------
         -->  Play is over (the game continues) - interaction with Player stops
-        -->  Draw cards for the Sealer
-        -->  Account settlement (payoffs are calculated)
+        -->  Draw cards for the Dealer
+        -->  Account settlement (payoffs calculated)
 	    -->  Show results, including what Dealer draw
 	 */	
 	@PostMapping("/stand")
@@ -262,17 +255,17 @@ public class BlackJackController
 		
 		GameStatus statusPL = new GameStatus(handPlayer.getTotalPoints(playerHandArr));
 		GameStatus statusDL = new GameStatus(handDealer.getTotalPoints(dealerHandArr));	
-		System.out.println("First Stand Message ======");
 		
 		
-		// 1. Dealer gets cards, update his account
+		// 1. Dealer gets cards, update his card info, available to the Player
+		// !!! Need to enforce 'out of cards' restriction for the Dealer too !!!
 		i = playerHandArr.size() + dealerHandArr.size();	
 		dlr.getDealerPoints(dealerHandArr, deck, i);
         temp = " Points: " + handDealer.getTotalPoints(dealerHandArr) + "    Cards: " + handDealer.getMyCards(dealerHandArr);
         model.addAttribute("points_d", temp);	
         
        
-		// 2. Send Player account data, though nothing has changed
+		// 2. Send Player hand data to the View, though nothing has changed
 		temp = " Points: " + handPlayer.getTotalPoints(playerHandArr) + "    Cards: " + handPlayer.getMyCards(playerHandArr);
         model.addAttribute("points_p", temp);
         
@@ -289,7 +282,7 @@ public class BlackJackController
 		model.addAttribute("isEvenMoney", false);
 	
 		
-		// 5. Need to substitute with a method call
+		// 5. ??? Need to substitute all that long & re-occurring rubbish with a method call  ???
 		vw.showCardsLeft(NUMBER_OF_CARDS, model, playerHandArr, dealerHandArr, cards_dealt);
 		model.addAttribute("start_with_amount", startWithAmount);
 		model.addAttribute("current_amount", act.getAccountAmount());
@@ -311,10 +304,10 @@ public class BlackJackController
 	
 
 	
-	/*  4. Press 'NEW PLAY' button
-	 *  ------------------------------------
-	    -->  Clear: 	Total points, Bet value, both hands   
-	    -->  Persist: 	Account balance, Number of cards left, Starting Amount
+	/*  4. 'NEW PLAY' button
+	 *  --------------------
+	    -->  Clear: 	Total (play) points, Bet value, both hands   
+	    -->  Persist: 	Account balance, Number of cards left, Starting Amount balance & current (end-of-play) account balance
 	 */	
 	@PostMapping("/new_game")
 	public String newPlay(Model model)  	
@@ -330,18 +323,17 @@ public class BlackJackController
 				
 		// At this point the Hands have not been cleared yet
 		vw.showCardsLeft(NUMBER_OF_CARDS, model, playerHandArr, dealerHandArr, cards_dealt);
-		// Populate "# of cards dealt' in previous play(s)
-		cards_dealt = playerHandArr.size() + dealerHandArr.size();
+		// Add # of cards dealt in previous play(s) - to a game-level variable
+		cards_dealt += playerHandArr.size() + dealerHandArr.size();
 		
 		// Re-set values 
 		model.addAttribute("win", "");
 		model.addAttribute("betA", "");
 		playerHandArr.clear();
 		dealerHandArr.clear();
-		
 		bet = 0;
 		
-		// No info on Player/Dealer Hands
+		// 'No info' on Player/Dealer Hands - sent to view
 		model.addAttribute("points_p", noInfo);
 		model.addAttribute("points_d", noInfo);
 		
@@ -351,8 +343,6 @@ public class BlackJackController
         // Out of money?
         if(act.getAccountAmount() == 0)
     	    {vw.renderToView(model, sts.isOutOfMoneyMsg1(), sts.isOutOfMoneyMsg2(), false, false, false, false, true);}
-        
-        System.out.println("the end of Play ------------>");
         
         
 		return "bljack/deal-form-ST";
