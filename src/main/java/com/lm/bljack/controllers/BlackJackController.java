@@ -324,7 +324,7 @@ public class BlackJackController
 		// At this point the Hands have not been cleared yet
 		vw.showCardsLeft(NUMBER_OF_CARDS, model, playerHandArr, dealerHandArr, cards_dealt);
 		// Add # of cards dealt in previous play(s) - to a game-level variable
-		cards_dealt += playerHandArr.size() + dealerHandArr.size();
+		cards_dealt = playerHandArr.size() + dealerHandArr.size();
 		
 		// Re-set values 
 		model.addAttribute("win", "");
